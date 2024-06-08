@@ -1,0 +1,15 @@
+SELECT 
+	date,
+	CASE WHEN hometeam_id = 8634 THEN 'FC Barcelona' 
+         ELSE 'Real Madrid CF' END as home,
+	CASE WHEN awayteam_id = 8634 THEN 'FC Barcelona' 
+         ELSE 'Real Madrid CF' END as away,
+	-- Identify all possible match outcomes
+	case when home_goal > away_goal and hometeam_id = 8634 then 'Barcelona win!'
+        WHEN home_goal > away_goal and hometeam_id = 8633 then 'Real Madrid win!'
+        WHEN home_goal < away_goal and awayteam_id = 8634 then 'Barcelona win!'
+        WHEN home_goal < away_goal and awayteam_id = 8633 then 'Real Madrid win!'
+        else 'Tie!' end as outcome
+FROM matches_spain
+WHERE (awayteam_id = 8634 OR hometeam_id = 8634)
+      AND (awayteam_id = 8633 OR hometeam_id = 8633);
