@@ -1,0 +1,11 @@
+SELECT 
+	c.name AS country,
+    -- Count matches in each of the 3 seasons
+	count(case when m.season = '2012/2013' then m.id end) AS matches_2012_2013,
+	count(case when m.season = '2013/2014' then m.id end) AS matches_2013_2014,
+	count(case when m.season = '2014/2015' then m.id end) AS matches_2014_2015
+FROM country AS c
+LEFT JOIN match AS m
+ON c.id = m.country_id
+-- Group by country name alias
+group by country ;
