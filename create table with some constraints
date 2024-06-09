@@ -1,0 +1,29 @@
+
+create table emp(
+emp_id int not null,
+emp_name nvarchar(50),
+emp_sal int,
+constraint c1
+check (emp_sal >100),
+emp_address nvarchar(50) default 'cairo'
+,
+constraint c2
+check (emp_address in ('cairo','alex'))
+,
+overtime int,
+constraint c4
+check (overtime between 100 and 1000)
+, constraint c3
+primary key(emp_id)
+,
+dept_id int,
+
+);
+
+  -----------------------------------------------
+  alter table emp
+add constraint c55
+unique (emp_name)
+--drop this constraint
+alter table emp
+drop constraint c55
